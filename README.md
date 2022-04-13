@@ -4,7 +4,7 @@
  ## Design of the ParkingSystem (JavaFX GUI) 1.1
  Previously we created a parking system UML diagram as a part of our car park application design but didnt give an key details on this class. Here we will consider the ParkingSystem class now and create the UML diagram with the key attributes and methods included. 
  
-https://user-images.githubusercontent.com/77361838/158159316-21f620bf-e2a2-4f08-b78b-11cb045ca25f.png![image](https://user-images.githubusercontent.com/77361838/163273842-b7652ea1-54ae-4ca8-894f-c4a6986973d6.png)
+[imgage][https://user-images.githubusercontent.com/77361838/158159316-21f620bf-e2a2-4f08-b78b-11cb045ca25f.png]
  
  As you can see, the ParkingSystem class requires a single instance of the parkedCarList collection class we developed in our previous design, this instance is recorded as the private list attribute in the ParkingSystem class.
  <br>
