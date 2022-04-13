@@ -53,3 +53,7 @@ As always, we use the start method to organise our layout:
 We have created the HBox and then added the relevant components, we then do the same for the VBox. Finally, we add the VBox to the Scene.
 <br>
 Eventually we will also customise the look of our visual components (by setting fonts and borders for example) when we present the complete code for the class. But now let's turn our attention to designing the event-handlers for the buttons on our GUI.
+
+## Designing the Event-Handlers
+
+As you saw there are a total of 
