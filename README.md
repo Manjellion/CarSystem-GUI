@@ -27,3 +27,12 @@ Let's start with the visual design. We need to choose which graphics components 
 
 ![image](https://user-images.githubusercontent.com/77361838/163276562-c9872adf-fa28-443e-ba24-25ec68dfe314.png)
 
+<br>
+It should be clear which JavaFX components we will be using here. We have a selection of buttons on our GUI as shown below. 
+
+![image](https://user-images.githubusercontent.com/77361838/163276778-a7d39f21-d403-47df-81d0-f1f5bf5f4bcc.png)
+
+<br>
+The remaining components are Label and TextField. In the examples you saw in the previous Application with a Menu, you saw that we created our visual components within our start method. This made sense as the algorithms for our button event handlers (which needed access to these components) were also contained within the start method. In this application however, we would expect to have much more complicated algorithms for our button event handlers, so we will structure things a little differently. In this parkedCarSystem class we will implement our event handlers in a series of private methods (one for each button).
+<br>
+One implication of implementing the event handling code in seperate methods is that it makes more sense now to make our visual components accessible throughout the class rather than just in the start method. To do that we make these visual components attributes of the parkedCarSystem  class. In the code snippet below we create these component attributes in the order they appear in our GUI design shown in the example of the design above. 
