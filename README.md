@@ -36,3 +36,20 @@ It should be clear which JavaFX components we will be using here. We have a sele
 The remaining components are Label and TextField. In the examples you saw in the previous Application with a Menu, you saw that we created our visual components within our start method. This made sense as the algorithms for our button event handlers (which needed access to these components) were also contained within the start method. In this application however, we would expect to have much more complicated algorithms for our button event handlers, so we will structure things a little differently. In this parkedCarSystem class we will implement our event handlers in a series of private methods (one for each button).
 <br>
 One implication of implementing the event handling code in seperate methods is that it makes more sense now to make our visual components accessible throughout the class rather than just in the start method. To do that we make these visual components attributes of the parkedCarSystem  class. In the code snippet below we create these component attributes in the order they appear in our GUI design shown in the example of the design above. 
+
+<img width="685" alt="Screenshot 2022-04-13 at 23 36 47" src="https://user-images.githubusercontent.com/77361838/163281331-9efa68f1-7713-494b-ae59-9fcc88529d3a.png">
+
+<br>
+
+Now let's turn the layout of these components. We will use a mixture of HBox and VBox to organise our layout.
+
+![image](https://user-images.githubusercontent.com/77361838/163281437-7899e3ae-6d55-4299-8a54-d10af3f5cce4.png)
+
+<br>
+As always, we use the start method to organise our layout:
+
+<img width="830" alt="Screenshot 2022-04-14 at 00 08 31" src="https://user-images.githubusercontent.com/77361838/163284199-d5c108cb-de13-4db9-b754-88a12735fcab.png">
+
+We have created the HBox and then added the relevant components, we then do the same for the VBox. Finally, we add the VBox to the Scene.
+<br>
+Eventually we will also customise the look of our visual components (by setting fonts and borders for example) when we present the complete code for the class. But now let's turn our attention to designing the event-handlers for the buttons on our GUI.
