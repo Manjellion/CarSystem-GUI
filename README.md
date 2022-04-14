@@ -53,3 +53,59 @@ As always, we use the start method to organise our layout:
 We have created the HBox and then added the relevant components, we then do the same for the VBox. Finally, we add the VBox to the Scene.
 <br>
 Eventually we will also customise the look of our visual components (by setting fonts and borders for example) when we present the complete code for the class. But now let's turn our attention to designing the event-handlers for the buttons on our GUI.
+
+## Designing the Event-Handlers
+
+As you saw there are a total of 6 buttons that need to be coded so that they respond in the correct way when pressed:
+<br>
+
+• the add object button
+• the remove object button
+• the display all object that are parked button
+• the save and quit button
+• the display all object that are registered button
+• the register object button
+<br>
+As always, we will use the setOnAction method of each button to process these button clicks, but (as we said in the previous section) we will place the code for the event-handlers in separate private methods and call these methods from our lambda experssions:
+<br>
+<img width="611" alt="Screenshot 2022-04-14 at 15 15 46" src="https://user-images.githubusercontent.com/77361838/163409542-61068ad0-6c89-4091-9adf-6b1834829014.png">
+<br>
+We have summarized below the task that each button's event-handler method must perform, and then gone on to design our algorithms using pseudocode. 
+
+### The Add Button 1.2.1
+
+The purpose of this button is to add a new Object to the list. The values entered in Label and text field must be validated; first of all, they must not be blank; second, the car park space must be greater than the total of parked cars (or less than 0); finally, the room must not be occupied. If all this is okay, then the new object is added (we will make use of the addParkedCar method of parkedCarList class to do this) and a message should be displayed in display area. We can express this in pseudocode as follows:<br>
+<br>
+read nameField<br>
+read IdField<br>
+check if registered<br>
+IF field blank<br>
+  display blank field error in display are<br>
+ELSE IF IdFIeld is registered <br>
+   BEGIN<br>
+       add object<br>
+       blank nameField<br>
+       bank IdField<br>
+       display message to confirm success in display area<br>
+   END<br>
+ELSE <br>
+    display invalid ID is not reigstered in display area<br>
+ <br>
+<br>
+### The Remove Button 1.2.2
+
+Clicking on this button will remove the object whose ID has been entered into the field.
+As with the Add button, the ID entered must be validated; we will use a search method from parkedCarList to scan through the array list in linear time and see if the ID matches with the current index of object. A confirmation message is displayed.
+The pseudocode for this event-handler is given as follows:<br>
+<br>
+IF field blank<br>
+      display blank field error in display area<br>
+ELSE IF search ID is equal to ID<br>
+      remove object from list<br>
+      display message to confirm success in display area<br>
+ELSE<br>
+    display ID does not exist in list in display area<br>
+END<br>
+<br>
+### The Display Button 1.2.3
+
