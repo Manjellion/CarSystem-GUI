@@ -109,3 +109,44 @@ END<br>
 <br>
 ### The Display Button 1.2.3
 
+Pressing the button will display the full list of objects in the display area showing their name and ID.
+If all parking spaces are taken then a suitable message should be displayed, otherwise the list of objects otherwise the name and ID should come under appropriate headings.
+This can be exposed in pseudocode as follows:<br>
+<br>
+IF list is empty<br>
+   display rooms empty error in display area<br>
+ELSE<br>
+BEGIN<br>
+    display header in display area<br>
+    LOOP FROM first item TO last item in the list<br>
+    BEGIN<br>
+        append object name and ID to display are<br>
+    END<br>
+END<br>
+
+### The List Registered Button 1.2.4
+
+This button records all cars that are registered in the system, to be displayed the object must first be registered, objecgs that arent registered will not be displayed in the display area. The deisn is expressed in the pseudocode as follows:<br>
+<br>
+read nameField<br>
+read idField<br>
+IF nameField blank or idField blank<br>
+   display fields empty error to the display area<br>
+ELSE IF search(ID) does not equal ID<br>
+   display invalid ID number error in display area<br>
+ELSE<br>
+BEGIN<br>
+   create new parkedCar object with search<br>
+      LOOP FROM first item to last item in the list<br>
+         IF object check register is true<br>
+           append object name and ID to display area<br>
+END<br>
+<br>
+
+### The Save and Quit Button 1.2.5
+
+Pressing this button causes all the records to be saved to a file (here we make use of the saveRecords method of the parkedCarFileHandler class from our Menu System); it closes the application, terminating the program. It will only contain a few lines of codes and we have therefore not written pseudocode for it. 
+
+## Implementing the ParkingSystem Class 1.3
+
+The complete code for the ParkingSystem class now appears below. Also note that use of two constants, WIDTH and HEIGHT, to help size our visual components and the parseInt method of the Integer class to convert the values entered as text into integer values. We have also enchanced our visual components by making use of borders and backgrounds. Study the code and the comments carefully (in particular compare the event-handling code to the pseudocode we presented in the previous section) to make sure you understand it and we will explain the new concepts to you after that.
