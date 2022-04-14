@@ -56,4 +56,17 @@ Eventually we will also customise the look of our visual components (by setting 
 
 ## Designing the Event-Handlers
 
-As you saw there are a total of 
+As you saw there are a total of 6 buttons that need to be coded so that they respond in the correct way when pressed:
+<br>
+
+• the add object button
+• the remove object button
+• the display all object that are parked button
+• the save and quit button
+• the display all object that are registered button
+• the register object button
+<br>
+As always, we will use the setOnAction method of each button to process these button clicks, but (as we said in the previous section) we will place the code for the event-handlers in separate private methods and call these methods from our lambda experssions:
+<br>
+<img width="611" alt="Screenshot 2022-04-14 at 15 15 46" src="https://user-images.githubusercontent.com/77361838/163409542-61068ad0-6c89-4091-9adf-6b1834829014.png">
+<br>
