@@ -74,38 +74,38 @@ We have summarized below the task that each button's event-handler method must p
 
 ### The Add Button 1.2.1
 
-The purpose of this button is to add a new Object to the list. The values entered in Label and text field must be validated; first of all, they must not be blank; second, the car park space must be greater than the total of parked cars (or less than 0); finally, the room must not be occupied. If all this is okay, then the new object is added (we will make use of the addParkedCar method of parkedCarList class to do this) and a message should be displayed in display area. We can express this in pseudocode as follows:
+The purpose of this button is to add a new Object to the list. The values entered in Label and text field must be validated; first of all, they must not be blank; second, the car park space must be greater than the total of parked cars (or less than 0); finally, the room must not be occupied. If all this is okay, then the new object is added (we will make use of the addParkedCar method of parkedCarList class to do this) and a message should be displayed in display area. We can express this in pseudocode as follows:<br>
 <br>
-read nameField
-read IdField
-check if registered
-IF field blank
-  display blank field error in display are
-ELSE IF IdFIeld is registered 
-   BEGIN
-       add object
-       blank nameField
-       bank IdField
-       display message to confirm success in display area
-   END
-ELSE 
-    display invalid ID is not reigstered in display area
- 
-
+read nameField<br>
+read IdField<br>
+check if registered<br>
+IF field blank<br>
+  display blank field error in display are<br>
+ELSE IF IdFIeld is registered <br>
+   BEGIN<br>
+       add object<br>
+       blank nameField<br>
+       bank IdField<br>
+       display message to confirm success in display area<br>
+   END<br>
+ELSE <br>
+    display invalid ID is not reigstered in display area<br>
+ <br>
+<br>
 ### The Remove Button 1.2.2
 
 Clicking on this button will remove the object whose ID has been entered into the field.
 As with the Add button, the ID entered must be validated; we will use a search method from parkedCarList to scan through the array list in linear time and see if the ID matches with the current index of object. A confirmation message is displayed.
-The pseudocode for this event-handler is given as follows:
+The pseudocode for this event-handler is given as follows:<br>
 <br>
-IF field blank
-      display blank field error in display area
-ELSE IF search ID is equal to ID
-      remove object from list
-      display message to confirm success in display area
-ELSE
-    display ID does not exist in list in display area
-END
-
+IF field blank<br>
+      display blank field error in display area<br>
+ELSE IF search ID is equal to ID<br>
+      remove object from list<br>
+      display message to confirm success in display area<br>
+ELSE<br>
+    display ID does not exist in list in display area<br>
+END<br>
+<br>
 ### The Display Button 1.2.3
 
