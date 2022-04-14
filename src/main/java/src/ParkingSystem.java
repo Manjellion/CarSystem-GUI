@@ -90,6 +90,14 @@ public class ParkingSystem extends Application{
         root.getChildren().addAll(headingLabel, carDetails, parkedCarBtn, displayParkedCar, displayRegisDetails, displayRegisteredBtn, displayRegisCar, registerDetails, registerBtn);
         // add VBox to the scene
         Scene scene = new Scene(root, Color.ALICEBLUE);
+
+        // call private methods for button event handlers using lambda expression
+        addBtn.setOnAction(e -> addHandler());
+        removeBtn.setOnAction(e -> removeHandler());
+        displayBtn.setOnAction(e -> displayHandler());
+        saveAndQuitBtn.setOnAction(e -> saveAndQuitHandler());
+        displayRegisBtn.setOnAction(e -> displayRegisHandler());
+        regisBtn.setOnAction(e -> registerHandler());
     }
 
     // this method will return the number of car spaces
