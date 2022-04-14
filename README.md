@@ -70,3 +70,42 @@ As always, we will use the setOnAction method of each button to process these bu
 <br>
 <img width="611" alt="Screenshot 2022-04-14 at 15 15 46" src="https://user-images.githubusercontent.com/77361838/163409542-61068ad0-6c89-4091-9adf-6b1834829014.png">
 <br>
+We have summarized below the task that each button's event-handler method must perform, and then gone on to design our algorithms using pseudocode. 
+
+### The Add Button 1.2.1
+
+The purpose of this button is to add a new Object to the list. The values entered in Label and text field must be validated; first of all, they must not be blank; second, the car park space must be greater than the total of parked cars (or less than 0); finally, the room must not be occupied. If all this is okay, then the new object is added (we will make use of the addParkedCar method of parkedCarList class to do this) and a message should be displayed in display area. We can express this in pseudocode as follows:
+<br>
+read nameField
+read IdField
+check if registered
+IF field blank
+  display blank field error in display are
+ELSE IF IdFIeld is registered 
+   BEGIN
+       add object
+       blank nameField
+       bank IdField
+       display message to confirm success in display area
+   END
+ELSE 
+    display invalid ID is not reigstered in display area
+ 
+
+### The Remove Button 1.2.2
+
+Clicking on this button will remove the object whose ID has been entered into the field.
+As with the Add button, the ID entered must be validated; we will use a search method from parkedCarList to scan through the array list in linear time and see if the ID matches with the current index of object. A confirmation message is displayed.
+The pseudocode for this event-handler is given as follows:
+<br>
+IF field blank
+      display blank field error in display area
+ELSE IF search ID is equal to ID
+      remove object from list
+      display message to confirm success in display area
+ELSE
+    display ID does not exist in list in display area
+END
+
+### The Display Button 1.2.3
+
