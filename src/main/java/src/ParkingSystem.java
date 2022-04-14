@@ -21,8 +21,13 @@ public class ParkingSystem extends Application{
     private int  noOfSpaces;
     private parkedCarList list;
 
+    //Width and Height
+    private final int WIDTH = 800;
+    private final int HEIGHT = 500;
+
     //javaFX components as visual components declared as attributes for the class
     //To Add, remove, display and save & quit event handling
+    //Visual Components
     private Label headingLabel = new Label("Car Park Application");
     private Label nameAddLabel = new Label("Name");
     private TextField nameAddField = new TextField();
@@ -34,9 +39,10 @@ public class ParkingSystem extends Application{
     private Button saveAndQuitBtn = new Button("Save and Quit");
     private TextArea displayParkedCar = new TextArea();
 
-    //To display registered cars only
+    //To display registered cars only and check if a car is registered
     private Label idCheckerLabel = new Label("ID");
     private TextField idField2 = new TextField();
+    private Button checkRegisBtn = new Button("Check if Registered");
     private Button displayRegisBtn = new Button("Display Registered Cars");
     private TextArea displayRegisCar = new TextArea();
 
@@ -52,6 +58,7 @@ public class ParkingSystem extends Application{
         launch(args);
     }
 
+    //initialise the stage
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Parking Application"); // Title of the GUI App
@@ -79,7 +86,7 @@ public class ParkingSystem extends Application{
         parkedCarBtn.getChildren().addAll(addBtn, removeBtn, displayBtn, saveAndQuitBtn);
 
         displayRegisDetails.getChildren().addAll(idCheckerLabel, idField2);
-        displayRegisteredBtn.getChildren().addAll(displayRegisBtn);
+        displayRegisteredBtn.getChildren().addAll(checkRegisBtn, displayRegisBtn);
 
         registerDetails.getChildren().addAll(regisNameLabel, regisNameField, regisIdLabel, regisIdField);
         registerBtn.getChildren().addAll(regisBtn);
@@ -96,6 +103,7 @@ public class ParkingSystem extends Application{
         removeBtn.setOnAction(e -> removeHandler());
         displayBtn.setOnAction(e -> displayHandler());
         saveAndQuitBtn.setOnAction(e -> saveAndQuitHandler());
+        checkRegisBtn.setOnAction(e -> checkRegisteredHandler());
         displayRegisBtn.setOnAction(e -> displayRegisHandler());
         regisBtn.setOnAction(e -> registerHandler());
     }
