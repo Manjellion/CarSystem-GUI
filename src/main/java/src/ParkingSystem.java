@@ -3,17 +3,17 @@ package src;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.scene.layout.StackPane;
 
 public class ParkingSystem extends Application{
 
@@ -97,6 +97,59 @@ public class ParkingSystem extends Application{
         root.getChildren().addAll(headingLabel, carDetails, parkedCarBtn, displayParkedCar, displayRegisDetails, displayRegisteredBtn, displayRegisCar, registerDetails, registerBtn);
         // add VBox to the scene
         Scene scene = new Scene(root, Color.ALICEBLUE);
+
+        // set font for heading
+        Font font = new Font("Calibri", 40);
+        headingLabel.setFont(font);
+
+        // set alignment for HBoxes
+        carDetails.setAlignment(Pos.CENTER);
+        parkedCarBtn.setAlignment(Pos.CENTER);
+        displayRegisDetails.setAlignment(Pos.CENTER);
+        displayRegisteredBtn.setAlignment(Pos.CENTER);
+        registerDetails.setAlignment(Pos.CENTER);
+        registerBtn.setAlignment(Pos.CENTER);
+
+        // set minimum and maximum width of components
+        nameAddField.setMaxWidth(50);
+        regisNameField.setMaxWidth(50);
+
+        carDetails.setMinWidth(WIDTH);
+        carDetails.setMaxWidth(WIDTH);
+
+        parkedCarBtn.setMinWidth(WIDTH);
+        parkedCarBtn.setMaxWidth(WIDTH);
+
+        displayRegisDetails.setMinWidth(WIDTH);
+        displayRegisDetails.setMaxWidth(WIDTH);
+
+        displayRegisteredBtn.setMinWidth(WIDTH);
+        displayRegisteredBtn.setMaxWidth(WIDTH);
+
+        registerDetails.setMinWidth(WIDTH);
+        registerDetails.setMaxWidth(WIDTH);
+
+        registerBtn.setMinWidth(WIDTH);
+        registerBtn.setMaxWidth(WIDTH);
+
+        root.setMinSize(WIDTH, HEIGHT);
+        root.setMaxSize(WIDTH, HEIGHT);
+
+        displayParkedCar.setMaxSize(WIDTH - 80, HEIGHT / 5);
+        displayRegisCar.setMaxSize(WIDTH - 80, HEIGHT / 5);
+
+        primaryStage.setWidth(WIDTH);
+        primaryStage.setHeight(HEIGHT);
+
+        // customise the visual components
+
+        // customise the VBox border and background
+        BorderStroke style = new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(0), new BorderWidths(2));
+        root.setBorder(new Border(style));
+        root.setBackground(Background.EMPTY);
+
+        // customise buttons
+
 
         // call private methods for button event handlers using lambda expression
         addBtn.setOnAction(e -> addHandler());
