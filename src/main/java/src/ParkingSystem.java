@@ -3,6 +3,7 @@ package src;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -149,7 +150,12 @@ public class ParkingSystem extends Application{
         root.setBackground(Background.EMPTY);
 
         // customise buttons
-
+        addBtn.setBackground(new Background(new BackgroundFill(Color.LIGHTYELLOW, new CornerRadii(10), Insets.EMPTY)));
+        displayBtn.setBackground(new Background(new BackgroundFill(Color.LIGHTYELLOW, new CornerRadii(10), Insets.EMPTY)));
+        removeBtn.setBackground(new Background(new BackgroundFill(Color.LIGHTYELLOW, new CornerRadii(10), Insets.EMPTY)));
+        saveAndQuitBtn.setBackground(new Background(new BackgroundFill(Color.LIGHTYELLOW, new CornerRadii(10), Insets.EMPTY)));
+        checkRegisBtn.setBackground(new Background(new BackgroundFill(Color.LIGHTYELLOW, new CornerRadii(10), Insets.EMPTY)));
+        displayRegisBtn.setBackground(new Background(new BackgroundFill(Color.LIGHTYELLOW, new CornerRadii(10), Insets.EMPTY)));
 
         // call private methods for button event handlers using lambda expression
         addBtn.setOnAction(e -> addHandler());
@@ -159,6 +165,11 @@ public class ParkingSystem extends Application{
         checkRegisBtn.setOnAction(e -> checkRegisteredHandler());
         displayRegisBtn.setOnAction(e -> displayRegisHandler());
         regisBtn.setOnAction(e -> registerHandler());
+
+        // configure the stage and make the stage visible
+        primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.show();
     }
 
     // this method will return the number of car spaces
@@ -167,5 +178,7 @@ public class ParkingSystem extends Application{
         int num = EasyScanner.nextInt();
         return num;
     }
+
+    
 
 }
