@@ -1,19 +1,13 @@
 package src;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ParkingSystem extends Application{
@@ -23,17 +17,19 @@ public class ParkingSystem extends Application{
     private parkedCarList list;
 
     //Width and Height
-    private final int WIDTH = 800;
-    private final int HEIGHT = 500;
+    private final int WIDTH = 1080;
+    private final int HEIGHT = 640;
 
     //javaFX components as visual components declared as attributes for the class
     //To Add, remove, display and save & quit event handling
     //Visual Components
     private Label headingLabel = new Label("Car Park Application");
-    private Label nameAddLabel = new Label("Name");
+    private Label nameAddLabel = new Label("Name:");
     private TextField nameAddField = new TextField();
-    private Label idAddLabel = new Label("ID");
+    private Label idAddLabel = new Label("ID:");
     private TextField idField = new TextField();
+    private Label regisAddLabel = new Label("Registered, enter Yes or No:");
+    private TextField regisAddField = new TextField();
     private Button addBtn = new Button("Add to car park");
     private Button removeBtn = new Button("Remove from car park");
     private Button displayBtn = new Button("Display Parked Cars");
@@ -62,7 +58,6 @@ public class ParkingSystem extends Application{
     //initialise the stage
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Parking Application"); // Title of the GUI App
 
         noOfSpaces = getNumberOfSpaces(); //Call private method
         // initialise parked car list
@@ -83,7 +78,7 @@ public class ParkingSystem extends Application{
         HBox registerBtn = new HBox(20);
 
         // add components to HBox
-        carDetails.getChildren().addAll(nameAddLabel, nameAddField, idAddLabel, idField);
+        carDetails.getChildren().addAll(nameAddLabel, nameAddField, idAddLabel, idField, regisAddLabel, regisAddField);
         parkedCarBtn.getChildren().addAll(addBtn, removeBtn, displayBtn, saveAndQuitBtn);
 
         displayRegisDetails.getChildren().addAll(idCheckerLabel, idField2);
@@ -93,14 +88,14 @@ public class ParkingSystem extends Application{
         registerBtn.getChildren().addAll(regisBtn);
 
         //create VBox
-        VBox root = new VBox(20);
+        VBox root = new VBox(15);
         // add components to VBox
         root.getChildren().addAll(headingLabel, carDetails, parkedCarBtn, displayParkedCar, displayRegisDetails, displayRegisteredBtn, displayRegisCar, registerDetails, registerBtn);
         // add VBox to the scene
-        Scene scene = new Scene(root, Color.ALICEBLUE);
+        Scene scene = new Scene(root, Color.AZURE);
 
         // set font for heading
-        Font font = new Font("Calibri", 40);
+        Font font = new Font("Montserrat", 40);
         headingLabel.setFont(font);
 
         // set alignment for HBoxes
@@ -136,8 +131,12 @@ public class ParkingSystem extends Application{
         root.setMinSize(WIDTH, HEIGHT);
         root.setMaxSize(WIDTH, HEIGHT);
 
-        displayParkedCar.setMaxSize(WIDTH - 80, HEIGHT / 5);
-        displayRegisCar.setMaxSize(WIDTH - 80, HEIGHT / 5);
+        displayParkedCar.setMaxSize(WIDTH, HEIGHT / 5);
+        displayParkedCar.setPadding(new Insets(20));
+        displayRegisCar.setMaxSize(WIDTH, HEIGHT / 5);
+        displayRegisCar.setPadding(new Insets(20));
+        displayParkedCar.setEditable(false);
+        displayRegisCar.setEditable(false);
 
         primaryStage.setWidth(WIDTH);
         primaryStage.setHeight(HEIGHT);
@@ -156,6 +155,7 @@ public class ParkingSystem extends Application{
         saveAndQuitBtn.setBackground(new Background(new BackgroundFill(Color.LIGHTYELLOW, new CornerRadii(10), Insets.EMPTY)));
         checkRegisBtn.setBackground(new Background(new BackgroundFill(Color.LIGHTYELLOW, new CornerRadii(10), Insets.EMPTY)));
         displayRegisBtn.setBackground(new Background(new BackgroundFill(Color.LIGHTYELLOW, new CornerRadii(10), Insets.EMPTY)));
+        regisBtn.setBackground(new Background(new BackgroundFill(Color.LIGHTYELLOW, new CornerRadii(10), Insets.EMPTY)));
 
         // call private methods for button event handlers using lambda expression
         addBtn.setOnAction(e -> addHandler());
@@ -169,16 +169,53 @@ public class ParkingSystem extends Application{
         // configure the stage and make the stage visible
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
+        primaryStage.setTitle("Parking Application"); // Title of the GUI App
         primaryStage.show();
     }
 
     // this method will return the number of car spaces
-    private int getNumberOfSpaces() {
-        System.out.println("Enter number of Car Park Spaces: ");
-        int num = EasyScanner.nextInt();
-        return num;
+    public int getNumberOfSpaces() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setHeaderText("How many car spaces?");
+        dialog.setTitle("Car Park Spaces Information Request");
+
+        String response = dialog.showAndWait().get();
+        return Integer.parseInt(response);
+    }
+    public void addHandler() {
+        String nameEntered = nameAddField.getText();
+        String idEntered = idField.getText();
+        String regisEntered = regisAddField.getText();
+
+        // check for errors
+        if(nameEntered.length() == 0 || idEntered.length() == 0) {
+            displayParkedCar.setText("Name must be entered");
+        } else if(Integer.parseInt(idEntered) == 0) {
+            displayParkedCar.setText("Please enter a valid ID");
+        } else if(list.getTotal() == noOfSpaces){
+            displayParkedCar.setText("The caar park is currently full, please come back again later when there is space");
+        } else { // okay to add the object
+            int id = Integer.parseInt(idEntered);
+            if(regisEntered == "Yes") {
+                parkedCar p = new parkedCar(nameEntered, id, true);
+                list.addParkedCar(p);
+                nameAddField.setText("");
+                idField.setText("");
+                regisAddField.setText("");
+                displayParkedCar.setText("Car for " + nameEntered + " has been successfully parked to the parking system");
+            } else if (regisEntered == "No") {
+                displayParkedCar.setText("Please register your car ID below");
+            } else {
+                displayParkedCar.setText("Please fill out the fields correctly");
+            }
+        }
     }
 
-    
+    private void removeHandler(){}
+    private void displayHandler(){}
+    private void saveAndQuitHandler(){}
+    private void checkRegisteredHandler(){}
+    private void displayRegisHandler(){}
+    private void registerHandler(){}
 
 }
