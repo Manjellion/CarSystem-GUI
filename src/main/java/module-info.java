@@ -4,6 +4,7 @@ module com.example.carsystemgui {
 
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
+    requires org.testng;
 
     opens src to javafx.fxml;
     exports src;
