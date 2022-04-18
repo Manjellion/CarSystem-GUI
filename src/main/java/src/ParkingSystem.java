@@ -1,6 +1,7 @@
 package src;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -49,6 +50,7 @@ public class ParkingSystem extends Application{
     private Label regisIdLabel = new Label("ID");
     private TextField regisIdField = new TextField();
     private Button regisBtn = new Button("Register Car");
+    private TextArea regisTextArea = new TextArea();
 
     //methods
     public static void main(String[] args) {
@@ -90,7 +92,7 @@ public class ParkingSystem extends Application{
         //create VBox
         VBox root = new VBox(15);
         // add components to VBox
-        root.getChildren().addAll(headingLabel, carDetails, parkedCarBtn, displayParkedCar, displayRegisDetails, displayRegisteredBtn, displayRegisCar, registerDetails, registerBtn);
+        root.getChildren().addAll(headingLabel, carDetails, parkedCarBtn, displayParkedCar, displayRegisDetails, displayRegisteredBtn, displayRegisCar, registerDetails, registerBtn, regisTextArea);
         // add VBox to the scene
         Scene scene = new Scene(root, Color.AZURE);
 
@@ -135,8 +137,11 @@ public class ParkingSystem extends Application{
         displayParkedCar.setPadding(new Insets(20));
         displayRegisCar.setMaxSize(WIDTH, HEIGHT / 5);
         displayRegisCar.setPadding(new Insets(20));
+        regisTextArea.setMaxSize(WIDTH, HEIGHT/ 5);
+        regisTextArea.setPadding(new Insets(20));
         displayParkedCar.setEditable(false);
         displayRegisCar.setEditable(false);
+        regisTextArea.setEditable(false);
 
         primaryStage.setWidth(WIDTH);
         primaryStage.setHeight(HEIGHT);
@@ -174,7 +179,7 @@ public class ParkingSystem extends Application{
     }
 
     // this method will return the number of car spaces
-    public int getNumberOfSpaces() {
+    private int getNumberOfSpaces() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setHeaderText("How many car spaces?");
         dialog.setTitle("Car Park Spaces Information Request");
@@ -182,7 +187,8 @@ public class ParkingSystem extends Application{
         String response = dialog.showAndWait().get();
         return Integer.parseInt(response);
     }
-    public void addHandler() {
+    // change regis field text to a button for yes and no to check if object is registered
+    private void addHandler() {
         String nameEntered = nameAddField.getText();
         String idEntered = idField.getText();
         String regisEntered = regisAddField.getText();
@@ -193,7 +199,7 @@ public class ParkingSystem extends Application{
         } else if(Integer.parseInt(idEntered) == 0) {
             displayParkedCar.setText("Please enter a valid ID");
         } else if(list.getTotal() == noOfSpaces){
-            displayParkedCar.setText("The caar park is currently full, please come back again later when there is space");
+            displayParkedCar.setText("The car park is currently full, please come back again later when there is space");
         } else { // okay to add the object
             int id = Integer.parseInt(idEntered);
             if(regisEntered == "Yes") {
@@ -210,12 +216,68 @@ public class ParkingSystem extends Application{
             }
         }
     }
+    // Button will allow user to enter ID to remove the object holding the variable for ID value
+    private void removeHandler(){
+        String idEntered = idField.getText();
+        int idParsed = Integer.parseInt(idEntered);
+        // check for errors
+        if(list.getTotal() == noOfSpaces) {
+            displayParkedCar.setText("The Parking space is full");
+        } else if (list.search(idParsed) == null) {
+            displayParkedCar.setText("The car doesn't exist in the car park");
+        } else { // ok to remove object
+            list.leaveCarParked(idParsed);
+            displayParkedCar.setText("Your car has successfully left the car park");
+        }
+    }
+    // Button will display all cars parked in the car park
+    private void displayHandler(){
+        int i;
+        if(list.isEmpty()) { // no objects to display as class collection is empty
+            displayParkedCar.setText("The car park is empty");
+        } else { // display the objects stored in the parkedCarList class collection
+            displayParkedCar.setText("NAME: " + "\t" + "ID: " + "\n");
+            for(i = 1; i <= list.getTotal(); i++) {
+                displayParkedCar.setText(list.getParkedCar(i).getName() + "\t\t" + list.getParkedCar(i).getID());
+            }
+        }
+    }
+    private void saveAndQuitHandler(){
+        parkedCarFileHandler.saveRecords(noOfSpaces, list);
+        Platform.exit();
+    }
+    private void checkRegisteredHandler(){
+        int ID = Integer.parseInt(idField2.getText());
+        parkedCar carObj = list.search(ID);
 
-    private void removeHandler(){}
-    private void displayHandler(){}
-    private void saveAndQuitHandler(){}
-    private void checkRegisteredHandler(){}
-    private void displayRegisHandler(){}
-    private void registerHandler(){}
+        if(carObj.checkCarRegistered() == true) {
+            displayRegisCar.setText("Car is Registered");
+        } else {
+            displayRegisCar.setText("Car is not registered, please register below");
+        }
+    }
+    private void displayRegisHandler(){
+        int i;
+        if(list.isEmpty()) { // no objects to display as class collection is empty
+            displayRegisCar.setText("There are no registered data saved in the system");
+        } else { // display the objects stored in the class collection
+            displayRegisCar.setText("NAME: " + "\t" + "ID: " + "\n");
+            for(i = 1; i <= list.getTotal(); i++) {
+                displayRegisCar.setText(list.getParkedCar(i).getName() + "\t\t" + list.getParkedCar(i).getID());
+            }
+        }
+    }
+    private void registerHandler(){
+        String name = regisNameField.getText();
+        int id = Integer.parseInt(regisIdField.getText());
+
+        if(name.length() == 0) {
+            regisTextArea.setText("Please enter valid details into the fields above");
+        } else {
+            parkedCar carObj = new parkedCar(name, id, true);
+            list.addParkedCar(carObj);
+            regisTextArea.setText("Car has been successfully registered to the system and has been added to the parking system automatically");
+        }
+    }
 
 }
