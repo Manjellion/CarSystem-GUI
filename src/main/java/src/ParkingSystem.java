@@ -29,8 +29,6 @@ public class ParkingSystem extends Application{
     private TextField nameAddField = new TextField();
     private Label idAddLabel = new Label("ID:");
     private TextField idField = new TextField();
-    private Label regisAddLabel = new Label("Registered, enter Yes or No:");
-    private TextField regisAddField = new TextField();
     private Button addBtn = new Button("Add to car park");
     private Button removeBtn = new Button("Remove from car park");
     private Button displayBtn = new Button("Display Parked Cars");
