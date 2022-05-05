@@ -201,16 +201,8 @@ public class ParkingSystem extends Application{
     private void addHandler() {
         String nameEntered = nameAddField.getText();
         String idEntered = idField.getText();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
         parkedCar carObj = list.search(Integer.parseInt(idEntered));
->>>>>>> 3619d146c71986af035bb376f07488cbf550c1b8
-=======
-
-        parkedCar carObj = list.search(Integer.parseInt(idEntered));
->>>>>>> 3619d146c71986af035bb376f07488cbf550c1b8
 
         // check for errors
         if(nameEntered.length() == 0 || idEntered.length() == 0) {
