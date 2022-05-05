@@ -6,7 +6,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -30,15 +29,6 @@ public class ParkingSystem extends Application{
     private TextField nameAddField = new TextField();
     private Label idAddLabel = new Label("ID:");
     private TextField idField = new TextField();
-<<<<<<< HEAD
-<<<<<<< HEAD
-    private Label regisAddLabel = new Label("Is your car Registered: ");
-    private Button regisYes = new Button("Yes");
-    private Button regisNo = new Button("No");
-=======
->>>>>>> 3619d146c71986af035bb376f07488cbf550c1b8
-=======
->>>>>>> 3619d146c71986af035bb376f07488cbf550c1b8
     private Button addBtn = new Button("Add to car park");
     private Button removeBtn = new Button("Remove from car park");
     private Button displayBtn = new Button("Display Parked Cars");
@@ -88,15 +78,7 @@ public class ParkingSystem extends Application{
         HBox registerBtn = new HBox(10);
 
         // add components to HBox
-<<<<<<< HEAD
-<<<<<<< HEAD
-        carDetails.getChildren().addAll(nameAddLabel, nameAddField, idAddLabel, idField, regisAddLabel, regisYes, regisNo);
-=======
         carDetails.getChildren().addAll(nameAddLabel, nameAddField, idAddLabel, idField);
->>>>>>> 3619d146c71986af035bb376f07488cbf550c1b8
-=======
-        carDetails.getChildren().addAll(nameAddLabel, nameAddField, idAddLabel, idField);
->>>>>>> 3619d146c71986af035bb376f07488cbf550c1b8
         parkedCarBtn.getChildren().addAll(addBtn, removeBtn, displayBtn, saveAndQuitBtn);
 
         displayRegisDetails.getChildren().addAll(idCheckerLabel, idField2);
@@ -210,12 +192,6 @@ public class ParkingSystem extends Application{
         } else if(list.getTotal() == noOfSpaces){
             displayParkedCar.setText("The car park is currently full, please come back again later when there is space");
         } else { // okay to add the object
-<<<<<<< HEAD
-<<<<<<< HEAD
-            if()
-=======
-=======
->>>>>>> 3619d146c71986af035bb376f07488cbf550c1b8
             if(carObj == null) {
                 displayParkedCar.setText("The car you are  adding isn't registered, please register below");
             } else {
@@ -225,7 +201,6 @@ public class ParkingSystem extends Application{
                 idField.setText("");
                 displayParkedCar.setText("Car for " + nameEntered + " has been successfully parked to the parking system");
             }
->>>>>>> 3619d146c71986af035bb376f07488cbf550c1b8
         }
     }
     // Button will allow user to enter ID to remove the object holding the variable for ID value
