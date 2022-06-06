@@ -1,5 +1,5 @@
 # CarSystem-GUI - 1
- A Graphical user interface model for a Car Parking Application able to add user into the parking if they are registered and let them leave, you can also request for reports on list of registered cars and parked cars seperately.
+ A Graphical user interface model for a Car Parking Application able to add user into the parking if they are registered and let them leave, you can also request for reports on list of registered cars and parked cars seperately. The GUI application uses methods and classes from <a href="https://github.com/Manjellion/carkPark-system">carPark-system</a>
  
  ## Design of the ParkingSystem (JavaFX GUI) 1.1
  Previously we created a parking system UML diagram as a part of our car park application design but didnt give an key details on this class. Here we will consider the ParkingSystem class now and create the UML diagram with the key attributes and methods included. 
